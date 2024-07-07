@@ -1,11 +1,11 @@
 const Filter = ({ searchValue, handleSearchChange }) => (
-    <form>
-      <div>
+  <form>
+    <div>
         filter shown with <input
-          value={searchValue}
-          onChange={handleSearchChange} />
-      </div>
-    </form>
-  )
+        value={searchValue}
+        onChange={handleSearchChange} />
+    </div>
+  </form>
+)
 
-  export default Filter
+export default Filter

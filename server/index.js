@@ -9,6 +9,7 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static('dist'))
 
+// eslint-disable-next-line no-unused-vars
 morgan.token('body', function(req, res) {
   return JSON.stringify(req.body)
 })
@@ -40,7 +41,7 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
