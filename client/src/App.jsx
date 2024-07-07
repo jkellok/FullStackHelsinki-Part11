@@ -38,13 +38,13 @@ const App = () => {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
         // find right person object and change number property
         const person = persons.find(p => p.name === newName)
-        console.log("person found", person)
+        console.log('person found', person)
         const changedPerson = { ...person, number: newNumber }
         // put changedPerson with updated number to server
         personService
           .replaceNumber(person.id, changedPerson)
           .then(returnedPerson => {
-            console.log("returned person", returnedPerson)
+            console.log('returned person', returnedPerson)
             const updatedPersons = persons.map(p => p.id !== person.id ? p : returnedPerson)
             setPersons(updatedPersons)
             setFilteredPersons(updatedPersons)
@@ -54,7 +54,7 @@ const App = () => {
               setNotificationMessage(null)
             }, 5000)
           })
-          .catch(error => {
+          .catch(error => { // eslint-disable-line no-unused-vars
             setNotificationMessage(`Information of ${newName} has already been removed from server`)
             setNotificationClassName('notification-error') // set classname so we can change style used
             setTimeout(() => {
@@ -73,7 +73,7 @@ const App = () => {
         name: newName,
         number: newNumber,
         //id: persons.length + 1,
-        }
+      }
 
       personService
         .create(personObject)
@@ -109,7 +109,7 @@ const App = () => {
       personService
         .deletePerson(id)
         .then((returnedPerson) => {
-          console.log("deleted", returnedPerson)
+          console.log('deleted', returnedPerson)
           // set persons states without the deleted one
           const personsAfterDeletion = persons.filter(person => person.id !== id)
           setPersons(personsAfterDeletion)
@@ -137,10 +137,10 @@ const App = () => {
     console.log(event.target.value)
     setSearchValue(event.target.value)
     // searchValue lags one character behind so using event.target.value better for filtering
-    console.log("searchvalue", searchValue)
+    console.log('searchvalue', searchValue)
     // return Object.values(person).join('').toLowerCase().incl... to search by every property
     const filtering = persons.filter(person => {
-      if (event.target.value === "") return persons // if search empty, return all persons
+      if (event.target.value === '') return persons // if search empty, return all persons
       return person.name.toLowerCase().includes(event.target.value.toLowerCase())
     })
     setFilteredPersons(filtering)
@@ -162,7 +162,7 @@ const App = () => {
             key={person.id}
             deletePerson={() => deletePersonOf(person.id)}
           />
-          )}
+        )}
       </div>
     </div>
   )
