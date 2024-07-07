@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && vite build",
     "build:ui": "rm -rf /c/Users/school/Desktop/school_stuff/FullStackHelsinki/repo-part11/phonebook/server/dist && cd /c/Users/school/Desktop/school_stuff/FullStackHelsinki/repo-part11/phonebook/client && npm run build && cp -r dist /c/Users/school/Desktop/school_stuff/FullStackHelsinki/repo-part11/phonebook/server",
-    "build:git": "rm -rf server/dist && cd client && npm run build && cd .. && cp -r  client/dist .",
+    "build:git": "rm -rf server/dist && cd client && npm run build && cd ../server && cp -r  ../client/dist .",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "lint": "eslint . --ext js,jsx",
     "preview": "vite preview",
