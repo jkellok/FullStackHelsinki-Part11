@@ -23,12 +23,11 @@ jobs:
         run: npm run lint
 
       - name: Build
-        run: npm run build:git && ls -la server
+        run: npm run build:git
 
-      #- name: Trigger deployment
-      #  id: trigger-deployment
-      #  if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
-      #  run: curl https://api.render.com/deploy/srv-${{secrets.RENDER_SERVICE_ID }}?key=${{secrets.RENDER_API_KEY }}
+      - name: Trigger deployment
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        run: curl https://api.render.com/deploy/srv-${{secrets.RENDER_SERVICE_ID }}?key=${{secrets.RENDER_API_KEY }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
