@@ -72,6 +72,10 @@ app.put('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
+app.get('/version', (request, response) => {
+  response.send('1')
+})
+
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
